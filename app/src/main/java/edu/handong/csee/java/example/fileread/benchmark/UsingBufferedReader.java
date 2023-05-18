@@ -7,18 +7,23 @@ import java.io.*;
  */
 public class UsingBufferedReader {
     public static void main(String[] args) throws IOException {
+        if (args.length < 1) {
+            System.out.println("Please provide a file name as a command line argument.");
+            System.exit(0);
+        }
 
+        String fileName = args[0];
 
         //-------------- Test reading 1 MB file. --------------------
 
         StopWatch.start();
 
-        BufferedReader inputStream= new BufferedReader(new FileReader(DumpDataWriter.input1MB));
-        while (inputStream.read()!=-1){}
+        BufferedReader inputStream = new BufferedReader(new FileReader(fileName));
+        while (inputStream.read() != -1) {}
 
         long duration = StopWatch.stop();
         System.out.println(duration + " milsec");
-        
+
         inputStream.close();
 
 
@@ -26,14 +31,14 @@ public class UsingBufferedReader {
 
         StopWatch.start();
 
-        BufferedReader inputStream2= new BufferedReader(new FileReader(DumpDataWriter.input10MB));
-        while (inputStream2.read()!=-1){}
+        BufferedReader inputStream2 = new BufferedReader(new FileReader(fileName));
+        while (inputStream2.read() != -1) {}
 
         long duration2 = StopWatch.stop();
         System.out.println(duration2 + " milsec");
 
         inputStream2.close();
-
+    }
         /*
         //-------------- Test reading 100 MB file. --------------------
 
@@ -61,5 +66,5 @@ public class UsingBufferedReader {
         
         inputStream4.close();
         */
-    }
+    
 }
